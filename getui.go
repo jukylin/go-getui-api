@@ -1,11 +1,11 @@
 package main
 
 import (
-	push "GetuiDemo/getui/push"
-	query "GetuiDemo/getui/query"
-	style "GetuiDemo/getui/style"
-	token "GetuiDemo/getui/token"
-	tool "GetuiDemo/getui/tool"
+	push "github.com/jukylin/go-getui-api/push"
+	query "github.com/jukylin/go-getui-api/query"
+	style "github.com/jukylin/go-getui-api/style"
+	token "github.com/jukylin/go-getui-api/token"
+	tool "github.com/jukylin/go-getui-api/tool"
 	"fmt"
 	"time"
 

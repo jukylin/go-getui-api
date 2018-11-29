@@ -1,8 +1,8 @@
 package push
 
 import (
-	tool "GetuiDemo/getui/tool"
-	util "GetuiDemo/getui/util"
+	tool "github.com/jukylin/go-getui-api/tool"
+	util "github.com/jukylin/go-getui-api/util"
 	"encoding/json"
 )
 
