@@ -7,6 +7,7 @@ type Apns struct {
 	Sound            string `json:"sound,omitempty"`             //通知铃声文件名，无声设置为“com.gexin.ios.silence”
 	ContentAvailable int    `json:"content-available,omitempty"` //推送直接带有透传数据
 	Category         string `json:"category,omitempty"`          //在客户端通知栏触发特定的action和button显示
+	Payload		 string `json:"payload"` 		     //增加自定义的数据
 }
 
 func GetApns() *Apns {
@@ -32,4 +33,8 @@ func (this *Apns) SetContentAvailable(is int) {
 
 func (this *Apns) SetCategory(str string) {
 	this.Category = str
+}
+
+func (this *Apns) SetPayload(str string) {
+	this.Payload = str
 }

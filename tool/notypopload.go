@@ -21,6 +21,7 @@ type NotyPopload struct {
 	IphoneMark    string      `json:"iphonemark,omitempty"`     //苹果标志 可选
 	DurationBegin string      `json:"duration_begin,omitempty"` //	设定展示开始时间，格式为yyyy-MM-dd HH:mm:ss 可选
 	DurationEnd   string      `json:"duration_end,omitempty"`   //设定展示结束时间，格式为yyyy-MM-dd HH:mm:ss  可选
+	//官方文档没有
 	NotifyStyle   int         `json:"notify_style,omitempty"`   //	通知栏消息布局样式(0 系统样式 1 个推样式) 默认为0  可选
 	Style         interface{} `json:"style,omitempty"`          //通知栏消息布局样式(0 系统样式 1 个推样式) 默认为0  可选
 }
