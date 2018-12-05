@@ -18,14 +18,8 @@ type PushSingleParmar struct {
 	RequestId    string             `json:"requestid"`
 }
 
-type PushSingleResult struct {
-	Result string `json:"result"` //ok 鉴权成功
-	TaskId string `json:"taskid"` //任务标识号
-	Desc   string `json:"desc"`   //错误信息描述
-	Status string `json:"status"` //推送结果successed_offline 离线下发successed_online 在线下发successed_ignore 非活跃用户不下发
-}
 
-func PushSingle(appId string, auth_token string, parmar *PushSingleParmar) (*PushSingleResult, error) {
+func PushSingle(appId string, auth_token string, parmar *PushSingleParmar) (*util.PushResult, error) {
 
 	url := util.TOKEN_DOMAIN + appId + "/push_single"
 	bodyByte, err := util.GetBody(parmar)
@@ -38,10 +32,10 @@ func PushSingle(appId string, auth_token string, parmar *PushSingleParmar) (*Pus
 		return nil, err
 	}
 
-	pushSingleResult := new(PushSingleResult)
+	pushResult := new(util.PushResult)
 	if err := json.Unmarshal([]byte(result), &pushSingleResult); err != nil {
 		return nil, err
 	}
 
-	return pushSingleResult, err
+	return pushResult, err
 }

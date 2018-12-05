@@ -7,6 +7,15 @@ const (
 	TOKEN_DOMAIN               = "https://restapi.getui.com/v1/"
 )
 
+type PushResult struct {
+	Result string `json:"result"` //ok 鉴权成功
+	TaskId string `json:"taskid"` //任务标识号
+	Desc   string `json:"desc"`   //错误信息描述
+	Status string `json:"status"` //推送结果successed_offline 离线下发successed_online 在线下发successed_ignore 非活跃用户不下发 针对push_single
+	CidDetail   map[string]string `json:"cid_details"`   //目标cid用户推送结果详情 针对save_list_body
+	AliasDetail map[string]string `json:"alias_details"` //目标别名用户推送结果详情 针对save_list_body
+}
+
 var RESULT_MAP = map[string]string{
 	"ok":                   "成功",
 	"no_msg":               "没有消息体",

@@ -6,12 +6,6 @@ import (
 	"encoding/json"
 )
 
-type ToAppResult struct {
-	Result string `json:"result"`
-	TaskId string `json:"taskid"` //	任务标识号
-	Desc   string `json:"desc"`   //	错误信息描述
-}
-
 //消息应用模板 notification、link、notypopload、transmission 四种类型选其一该属性与message下面的msgtype一致
 type ToAppParmar struct {
 	Message      *tool.Message      `json:"message"` //消息内容
@@ -23,7 +17,7 @@ type ToAppParmar struct {
 	Requestid    string             `json:"requestid"`           //请求唯一标识
 }
 
-func ToApp(appId string, auth_token string, toAppParmar *ToAppParmar) (*ToAppResult, error) {
+func ToApp(appId string, auth_token string, toAppParmar *ToAppParmar) (*util.PushResult, error) {
 
 	url := util.TOKEN_DOMAIN + appId + "/push_app"
 	bodyByte, err := util.GetBody(toAppParmar)
@@ -36,10 +30,10 @@ func ToApp(appId string, auth_token string, toAppParmar *ToAppParmar) (*ToAppRes
 		return nil, err
 	}
 
-	toAppResult := new(ToAppResult)
-	if err := json.Unmarshal([]byte(result), &toAppResult); err != nil {
+	pushResult := new(util.PushResult)
+	if err := json.Unmarshal([]byte(result), &pushResult); err != nil {
 		return nil, err
 	}
 
-	return toAppResult, err
+	return pushResult, err
 }

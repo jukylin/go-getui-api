@@ -6,11 +6,6 @@ import (
 	"encoding/json"
 )
 
-type SaveListBodyResult struct {
-	Result string `json:"result"`
-	TaskId string `json:"taskid"` //	任务标识号
-	Desc   string `json:"desc"`   //	错误信息描述
-}
 
 //消息应用模板 notification、link、notypopload、transmission 四种类型选其一该属性与message下面的msgtype一致
 type SaveListBodyParmar struct {
@@ -23,7 +18,7 @@ type SaveListBodyParmar struct {
 	TaskName     string             `json:"task_name,omitempty"` //	任务名称 可以给多个任务指定相同的task_name，后面用task_name查询推送结果能得到多个任务的结果  可选
 }
 
-func SaveListBody(appId string, auth_token string, parmar *SaveListBodyParmar) (*SaveListBodyResult, error) {
+func SaveListBody(appId string, auth_token string, parmar *SaveListBodyParmar) (*util.PushResult, error) {
 
 	url := util.TOKEN_DOMAIN + appId + "/save_list_body"
 	bodyByte, err := util.GetBody(parmar)
@@ -36,10 +31,10 @@ func SaveListBody(appId string, auth_token string, parmar *SaveListBodyParmar) (
 		return nil, err
 	}
 
-	saveListBodyResult := new(SaveListBodyResult)
-	if err := json.Unmarshal([]byte(result), &saveListBodyResult); err != nil {
+	pushResult := new(util.PushResult)
+	if err := json.Unmarshal([]byte(result), &pushResult); err != nil {
 		return nil, err
 	}
 
-	return saveListBodyResult, err
+	return pushResult, err
 }

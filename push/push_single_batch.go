@@ -6,12 +6,6 @@ import (
 	"encoding/json"
 )
 
-type PushSigleBatchResult struct {
-	Result string `json:"result"`
-	TaskId string `json:"taskid"` //	任务标识号
-	Desc   string `json:"desc"`   //	错误信息描述
-}
-
 type PushSigleBatchListParmar struct {
 	MsgList    []*PushSigleBatchParmar `json:"msg_list"`              //
 	NeedDetail bool                    `json:"need_detail,omitempty"` //默认值:false，是否需要返回每个CID的状态
@@ -29,7 +23,7 @@ type PushSigleBatchParmar struct {
 	RequestId    string             `json:"requestid"`
 }
 
-func PushSigleBatch(appId string, auth_token string, parmar *PushSigleBatchListParmar) (*PushSigleBatchResult, error) {
+func PushSigleBatch(appId string, auth_token string, parmar *PushSigleBatchListParmar) (*util.PushResult, error) {
 
 	url := util.TOKEN_DOMAIN + appId + "/push_single_batch"
 	bodyByte, err := util.GetBody(parmar)
@@ -42,10 +36,10 @@ func PushSigleBatch(appId string, auth_token string, parmar *PushSigleBatchListP
 		return nil, err
 	}
 
-	pushSigleBatchResult := new(PushSigleBatchResult)
-	if err := json.Unmarshal([]byte(result), &pushSigleBatchResult); err != nil {
+	pushResult := new(util.PushResult)
+	if err := json.Unmarshal([]byte(result), &pushResult); err != nil {
 		return nil, err
 	}
 
-	return pushSigleBatchResult, err
+	return pushResult, err
 }
