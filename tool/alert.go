@@ -29,3 +29,7 @@ func (this *Alert) SetTitle(str string) {
 func (this *Alert) SetBody(str string) {
 	this.Body = str
 }
+
+func (this *Alert) SetSubtitle(str string) {
+	this.Subtitle = str
+}

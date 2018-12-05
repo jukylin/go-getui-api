@@ -15,7 +15,7 @@ type ToAppParmar struct {
 	Transmission *tool.Transmission `json:"transmission,omitempty"`
 	Condition    []*tool.Condition  `json:"condition,omitempty"` //	筛选目标用户条件，参考下面的condition说明  可选
 	Requestid    string             `json:"requestid"`           //请求唯一标识
-	Speed	int        `json:"speed"` //推送速度控制
+	Speed	int        `json:"speed"`
 }
 
 func ToApp(appId string, auth_token string, toAppParmar *ToAppParmar) (*util.PushResult, error) {
