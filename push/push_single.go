@@ -33,7 +33,7 @@ func PushSingle(appId string, auth_token string, parmar *PushSingleParmar) (*uti
 	}
 
 	pushResult := new(util.PushResult)
-	if err := json.Unmarshal([]byte(result), &pushSingleResult); err != nil {
+	if err := json.Unmarshal([]byte(result), &pushResult); err != nil {
 		return nil, err
 	}
 
