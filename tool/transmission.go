@@ -6,7 +6,7 @@ type Transmission struct {
 	TransmissionContent string                 `json:"transmission_content"`     //透传内容
 	DurationBegin       string                 `json:"duration_begin,omitempty"` //	设定展示开始时间，格式为yyyy-MM-dd HH:mm:ss  可选
 	DurationEnd         string                 `json:"duration_end,omitempty"`   //设定展示结束时间，格式为yyyy-MM-dd HH:mm:ss  可选
-	PushInfo            map[string]interface{} `json:"push_info,omitempty"`      //APNs消息内容  可选
+	PushInfo           *PushInfo `json:"push_info,omitempty"`      //push_info 消息内容  可选
 }
 
 func GetTransmission(content string) *Transmission {
@@ -33,6 +33,6 @@ func (this *Transmission) SetDurationEnd(str string) {
 	this.DurationEnd = str
 }
 
-func (this *Transmission) SetPushInfo(info map[string]interface{}) {
-	this.PushInfo = info
+func (this *Transmission) SetPushInfo(push_info *PushInfo) {
+	this.PushInfo = push_info
 }
