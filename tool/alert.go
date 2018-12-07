@@ -30,6 +30,39 @@ func (this *Alert) SetBody(str string) {
 	this.Body = str
 }
 
+func (this *Alert) SetActionLocKey(str string) {
+	this.ActionLocKey = str
+}
+
+func (this *Alert) SetLocKey(str string) {
+	this.LocKey = str
+}
+
+func (this *Alert) SetLocArgs(strs []string) {
+	this.LocArgs = strs
+}
+
+func (this *Alert) SetLaunchImage(str string) {
+	this.LaunchImage = str
+}
+
+func (this *Alert) SetTitleLocArgs(strs []string) {
+	this.TitleLocArgs = strs
+}
+
+func (this *Alert) SetTitileLocKey(str string) {
+	this.TitileLocKey = str
+}
+
 func (this *Alert) SetSubtitle(str string) {
 	this.Subtitle = str
 }
+
+func (this *Alert) SetSubtitleLocKey(str string) {
+	this.SubtitleLocKey = str
+}
+
+func (this *Alert) SetSubtitleLocArgs(strs []string) {
+	this.SubtitleLocArgs = strs
+}
+
