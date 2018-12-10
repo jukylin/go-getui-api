@@ -16,7 +16,7 @@ type PushSingleParmar struct {
 	Cid          string             `json:"cid,omitempty"`
 	Alias        string             `json:"alias,omitempty"`
 	RequestId    string             `json:"requestid"`
-	PushInfo     *tool.PushInfo     `json:"push_info"`
+	PushInfo     map[string]interface{} `json:"push_info"`
 }
 
 

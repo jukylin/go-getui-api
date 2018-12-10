@@ -21,6 +21,7 @@ type PushSigleBatchParmar struct {
 	Cid          string             `json:"cid"`   //cid为cid list，与alias list二选一
 	Alias        string             `json:"alias"` //	alias为alias list，与cid list二选一
 	RequestId    string             `json:"requestid"`
+	PushInfo     map[string]interface{} `json:"push_info"`
 }
 
 func PushSigleBatch(appId string, auth_token string, parmar *PushSigleBatchListParmar) (*util.PushResult, error) {
