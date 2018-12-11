@@ -12,7 +12,7 @@ type pushSingleParmar struct {
 	Notification *tool.Notification `json:"notification,omitempty"`
 	Link         *tool.Link         `json:"link,omitempty"`
 	Notypopload  *tool.NotyPopload  `json:"notypopload,omitempty"`
-	Transmission *tool.Transmission `json:"transmission,omitempty"`
+	Transmission map[string]interface{} `json:"transmission,omitempty"`
 	Cid          string             `json:"cid,omitempty"`
 	Alias        string             `json:"alias,omitempty"`
 	RequestId    string             `json:"requestid"`
@@ -69,7 +69,7 @@ func (this *pushSingleParmar) SetNotypopload(notyPopload *tool.NotyPopload) {
 }
 
 
-func (this *pushSingleParmar) SetTransmission(trans *tool.Transmission) {
+func (this *pushSingleParmar) SetTransmission(trans map[string]interface{}) {
 	this.Transmission = trans
 	this.data["transmission"] = trans
 }
