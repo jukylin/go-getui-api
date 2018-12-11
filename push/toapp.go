@@ -12,7 +12,7 @@ type toAppParmar struct {
 	Notification *tool.Notification `json:"notification,omitempty"`
 	Link         *tool.Link         `json:"link,omitempty"`
 	Notypopload  *tool.NotyPopload  `json:"notypopload,omitempty"`
-	Transmission *tool.Transmission `json:"transmission,omitempty"`
+	Transmission map[string]interface{} `json:"transmission,omitempty"`
 	Condition    []*tool.Condition  `json:"condition,omitempty"` //	筛选目标用户条件，参考下面的condition说明  可选
 	RequestId    string             `json:"requestid"`           //请求唯一标识
 	Speed	int        `json:"speed"`
@@ -70,7 +70,7 @@ func (this *toAppParmar) SetNotypopload(notyPopload *tool.NotyPopload) {
 }
 
 
-func (this *toAppParmar) SetTransmission(trans *tool.Transmission) {
+func (this *toAppParmar) SetTransmission(trans map[string]interface{}) {
 	this.Transmission = trans
 	this.data["transmission"] = trans
 }
