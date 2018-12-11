@@ -24,6 +24,11 @@ func (this *PushInfo) SetMultimedia(multimedia *MultiMedia) {
 	this.data["multimedia"] = this.Multi_media
 }
 
+func (this *PushInfo) SetPayload(payload string) {
+	this.Payload = payload
+	this.data["payload"] = payload
+}
+
 
 func (this *PushInfo) GetData() map[string]interface{} {
 	return this.data
