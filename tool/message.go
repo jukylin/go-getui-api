@@ -6,7 +6,7 @@ type Message struct {
 	OfflineExpireTime int    `json:"offline_expire_time,omitempty"` //	消息离线存储有效期，单位：ms 默认24小时
 	PushNetWorkType   int    `json:"push_network_type,omitempty"`   //	选择推送消息使用网络类型，0：不限制，1：wifi 默认0
 	MsgType           string `json:"msgtype"`                       //	消息应用类型，可选项：notification、link、notypopload、transmission
-}
+	Speed			int `json:"speed"`}
 
 type messageType struct {
 	Notification string
@@ -44,4 +44,9 @@ func (this *Message) SetPushNetWorkType(pushNetWorkType int) {
 
 func (this *Message) SetMsgType(msgType string) {
 	this.MsgType = msgType
+}
+
+
+func (this *Message) SetSpeed(speed int) {
+	this.Speed = speed
 }
