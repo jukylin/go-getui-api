@@ -7,7 +7,7 @@ import (
 )
 
 //消息应用模板 notification、link、notypopload、transmission 四种类型选其一该属性与message下面的msgtype一致
-type pushSingleParmar struct {
+type PushSingleParmar struct {
 	Message      *tool.Message      `json:"message"`
 	Notification *tool.Notification `json:"notification,omitempty"`
 	Link         *tool.Link         `json:"link,omitempty"`
@@ -20,8 +20,7 @@ type pushSingleParmar struct {
 	data map[string]interface{} `json:"data"`
 }
 
-
-func PushSingle(appId string, auth_token string, parmar *pushSingleParmar) (*util.PushResult, error) {
+func PushSingle(appId string, auth_token string, parmar *PushSingleParmar) (*util.PushResult, error) {
 
 	url := util.TOKEN_DOMAIN + appId + "/push_single"
 	bodyByte, err := util.GetBody(parmar.GetData())
@@ -42,60 +41,60 @@ func PushSingle(appId string, auth_token string, parmar *pushSingleParmar) (*uti
 	return pushResult, err
 }
 
-func NewPushSingleParmar() *pushSingleParmar {
-	return &pushSingleParmar{
+func NewPushSingleParmar() *PushSingleParmar {
+	return &PushSingleParmar{
 		data : make(map[string]interface{}),
 	}
 }
 
-func (this *pushSingleParmar) SetMessage(message *tool.Message) {
+func (this *PushSingleParmar) SetMessage(message *tool.Message) {
 	this.Message = message
 	this.data["message"] = message
 }
 
-func (this *pushSingleParmar) SetNotification(notification *tool.Notification) {
+func (this *PushSingleParmar) SetNotification(notification *tool.Notification) {
 	this.Notification = notification
 	this.data["notification"] = notification
 }
 
 
-func (this *pushSingleParmar) SetLink(link *tool.Link) {
+func (this *PushSingleParmar) SetLink(link *tool.Link) {
 	this.Link = link
 	this.data["link"] = link
 }
 
-func (this *pushSingleParmar) SetNotypopload(notyPopload *tool.NotyPopload) {
+func (this *PushSingleParmar) SetNotypopload(notyPopload *tool.NotyPopload) {
 	this.Notypopload = notyPopload
 	this.data["notypopload"] = notyPopload
 }
 
 
-func (this *pushSingleParmar) SetTransmission(trans map[string]interface{}) {
+func (this *PushSingleParmar) SetTransmission(trans map[string]interface{}) {
 	this.Transmission = trans
 	this.data["transmission"] = trans
 }
 
-func (this *pushSingleParmar) SetCid(cid string) {
+func (this *PushSingleParmar) SetCid(cid string) {
 	this.Cid = cid
 	this.data["cid"] = cid
 }
 
-func (this *pushSingleParmar) SetAlias(alias string) {
+func (this *PushSingleParmar) SetAlias(alias string) {
 	this.Alias = alias
 	this.data["alias"] = alias
 }
 
-func (this *pushSingleParmar) SetRequestId(reqId string) {
+func (this *PushSingleParmar) SetRequestId(reqId string) {
 	this.RequestId = reqId
 	this.data["requestid"] = reqId
 }
 
-func (this *pushSingleParmar) SetPushInfo(pushInfo map[string]interface{}) {
+func (this *PushSingleParmar) SetPushInfo(pushInfo map[string]interface{}) {
 	this.PushInfo = pushInfo
 	this.data["push_info"] = pushInfo
 }
 
 
-func (this *pushSingleParmar) GetData() map[string]interface{}{
+func (this *PushSingleParmar) GetData() map[string]interface{}{
 	return this.data
 }

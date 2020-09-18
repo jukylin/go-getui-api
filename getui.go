@@ -6,6 +6,7 @@ import (
 	style "github.com/jukylin/go-getui-api/style"
 	token "github.com/jukylin/go-getui-api/token"
 	tool "github.com/jukylin/go-getui-api/tool"
+	util "github.com/jukylin/go-getui-api/util"
 	"fmt"
 	"time"
 
@@ -120,7 +121,7 @@ func getPushResult(auth_token string, taskId string) (*query.PushRESResult, erro
 }
 
 //单推
-func pushSingle(auth_token string) (*push.PushSingleResult, error) {
+func pushSingle(auth_token string) (*util.PushResult, error) {
 
 	message := tool.GetMessage()
 	message.SetAppKey(appKey)

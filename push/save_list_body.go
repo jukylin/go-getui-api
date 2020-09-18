@@ -8,7 +8,7 @@ import (
 
 
 //消息应用模板 notification、link、notypopload、transmission 四种类型选其一该属性与message下面的msgtype一致
-type saveListBodyParmar struct {
+type SaveListBodyParmar struct {
 	Message      *tool.Message      `json:"message"` //消息内容
 	Notification *tool.Notification `json:"notification,omitempty"`
 	Link         *tool.Link         `json:"link,omitempty"`
@@ -19,7 +19,13 @@ type saveListBodyParmar struct {
 	data map[string]interface{} 	`json:"data"`
 }
 
-func SaveListBody(appId string, auth_token string, parmar *saveListBodyParmar) (*util.PushResult, error) {
+type SaveListBodyResult struct {
+	Result string `json:"result"`
+	TaskId string `json:"taskid"` //	任务标识号
+	Desc   string `json:"desc"`   //	错误信息描述
+}
+
+func SaveListBody(appId string, auth_token string, parmar *SaveListBodyParmar) (*SaveListBodyResult, error) {
 
 	url := util.TOKEN_DOMAIN + appId + "/save_list_body"
 	bodyByte, err := util.GetBody(parmar.GetData())
@@ -32,59 +38,59 @@ func SaveListBody(appId string, auth_token string, parmar *saveListBodyParmar) (
 		return nil, err
 	}
 
-	pushResult := new(util.PushResult)
-	if err := json.Unmarshal([]byte(result), &pushResult); err != nil {
+	saveListBodyResult := new(SaveListBodyResult)
+	if err := json.Unmarshal([]byte(result), &saveListBodyResult); err != nil {
 		return nil, err
 	}
 
-	return pushResult, err
+	return saveListBodyResult, err
 }
 
-func NewSaveListBodyParmar() *saveListBodyParmar {
-	return &saveListBodyParmar{
+func NewSaveListBodyParmar() *SaveListBodyParmar {
+	return &SaveListBodyParmar{
 		data : make(map[string]interface{}),
 	}
 }
 
-func (this *saveListBodyParmar) SetMessage(message *tool.Message) {
+func (this *SaveListBodyParmar) SetMessage(message *tool.Message) {
 	this.Message = message
 	this.data["message"] = message
 }
 
-func (this *saveListBodyParmar) SetNotification(notification *tool.Notification) {
+func (this *SaveListBodyParmar) SetNotification(notification *tool.Notification) {
 	this.Notification = notification
 	this.data["notification"] = notification
 }
 
 
-func (this *saveListBodyParmar) SetLink(link *tool.Link) {
+func (this *SaveListBodyParmar) SetLink(link *tool.Link) {
 	this.Link = link
 	this.data["link"] = link
 }
 
-func (this *saveListBodyParmar) SetNotypopload(notyPopload *tool.NotyPopload) {
+func (this *SaveListBodyParmar) SetNotypopload(notyPopload *tool.NotyPopload) {
 	this.Notypopload = notyPopload
 	this.data["notypopload"] = notyPopload
 }
 
 
-func (this *saveListBodyParmar) SetTransmission(trans map[string]interface{}) {
+func (this *SaveListBodyParmar) SetTransmission(trans map[string]interface{}) {
 	this.Transmission = trans
 	this.data["transmission"] = trans
 }
 
-func (this *saveListBodyParmar) SetPushInfo(pushInfo map[string]interface{}) {
+func (this *SaveListBodyParmar) SetPushInfo(pushInfo map[string]interface{}) {
 	this.PushInfo = pushInfo
 	this.data["push_info"] = pushInfo
 }
 
-func (this *saveListBodyParmar) SetTaskName(TaskName string) {
+func (this *SaveListBodyParmar) SetTaskName(TaskName string) {
 	this.TaskName = TaskName
 	this.data["task_name"] = TaskName
 }
 
 
 
-func (this *saveListBodyParmar) GetData() map[string]interface{}{
+func (this *SaveListBodyParmar) GetData() map[string]interface{}{
 	return this.data
 }
