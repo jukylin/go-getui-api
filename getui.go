@@ -68,7 +68,7 @@ func GetPushListParmar(taskId string, cids []string) *push.PushListParmar {
 	return pushListParmar
 }
 
-func SaveListBody(appId string, auth_token string, parmar *push.SaveListBodyParmar) (*push.SaveListBodyResult, error) {
+func SaveListBody(appId string, auth_token string, parmar *push.SaveListBodyParmar) (*util.PushResult, error) {
 
 	saveListBodyResult, err := push.SaveListBody(appId, auth_token, parmar)
 	if err != nil {

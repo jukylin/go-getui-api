@@ -19,13 +19,7 @@ type SaveListBodyParmar struct {
 	data map[string]interface{} 	`json:"data"`
 }
 
-type SaveListBodyResult struct {
-	Result string `json:"result"`
-	TaskId string `json:"taskid"` //	任务标识号
-	Desc   string `json:"desc"`   //	错误信息描述
-}
-
-func SaveListBody(appId string, auth_token string, parmar *SaveListBodyParmar) (*SaveListBodyResult, error) {
+func SaveListBody(appId string, auth_token string, parmar *SaveListBodyParmar) (*util.PushResult, error) {
 
 	url := util.TOKEN_DOMAIN + appId + "/save_list_body"
 	bodyByte, err := util.GetBody(parmar.GetData())
@@ -38,7 +32,7 @@ func SaveListBody(appId string, auth_token string, parmar *SaveListBodyParmar) (
 		return nil, err
 	}
 
-	saveListBodyResult := new(SaveListBodyResult)
+	saveListBodyResult := new(util.PushResult)
 	if err := json.Unmarshal([]byte(result), &saveListBodyResult); err != nil {
 		return nil, err
 	}
